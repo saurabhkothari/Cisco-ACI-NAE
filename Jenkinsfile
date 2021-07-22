@@ -36,7 +36,7 @@ pipeline {
                ansiColor('xterm') {
                 
                             ansiblePlaybook(
-                             playbook: 'pcv.yml' ,
+                             playbook: 'pcv.yaml' ,
                              inventory: 'inventory',
                              vaultCredentialsId: 'ansible-vault-id',
                              colorized: true)
