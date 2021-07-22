@@ -69,11 +69,12 @@ pipeline {
     }
     post { 
         success { 
-         withCredentials([file(credentialsId: 'webex-key', variable: 'webex-key')]){ 
-            wrap([$class: 'BuildUser']) {
+         wrap([$class: 'BuildUser']) {    
+          withCredentials([string(credentialsId: 'webex-key', variable: 'webex')]){ 
+            
             sh """
                     curl --location --request POST 'https://webexapis.com/v1/messages' \
---header 'Authorization: Bearer "${webex-key}"' \
+--header 'Authorization: Bearer ${webex}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "roomId": "Y2lzY29zcGFyazovL3VzL1JPT00vYWRhOWQ0ODAtZTYwNy0xMWViLTk3YWYtOTkwNTEzNzMzMjBl",
@@ -86,11 +87,12 @@ pipeline {
             }
         }
         failure { 
-         withCredentials([file(credentialsId: 'webex-key', variable: 'webex-key')]){ 
-          wrap([$class: 'BuildUser']) {   
+         wrap([$class: 'BuildUser']) {       
+          withCredentials([string(credentialsId: 'webex-key', variable: 'webex')]){ 
+             
             sh """
                     curl --location --request POST 'https://webexapis.com/v1/messages' \
---header 'Authorization: Bearer "${webex-key}"' \
+--header 'Authorization: Bearer ${webex}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "roomId": "Y2lzY29zcGFyazovL3VzL1JPT00vYWRhOWQ0ODAtZTYwNy0xMWViLTk3YWYtOTkwNTEzNzMzMjBl",
