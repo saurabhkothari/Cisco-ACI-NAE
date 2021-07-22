@@ -69,7 +69,7 @@ pipeline {
     }
     post { 
         success { 
-         withCredentials([file(credentialsId: 'webex-key', variable: 'webex-key')]){ 
+         withCredentials([string(credentialsId: 'webex-key', variable: 'webex-key')]){ 
             wrap([$class: 'BuildUser']) {
             sh """
                     curl --location --request POST 'https://webexapis.com/v1/messages' \
@@ -86,7 +86,7 @@ pipeline {
             }
         }
         failure { 
-         withCredentials([file(credentialsId: 'webex-key', variable: 'webex-key')]){ 
+         withCredentials([string(credentialsId: 'webex-key', variable: 'webex-key')]){ 
           wrap([$class: 'BuildUser']) {   
             sh """
                     curl --location --request POST 'https://webexapis.com/v1/messages' \
