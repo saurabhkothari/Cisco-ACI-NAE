@@ -1,5 +1,5 @@
 pipeline {
-    agent {  label 'aci-ansible'  }
+    agent {  label 'aci-ansible-nae'  }
 
     stages {
         stage('Git '){
